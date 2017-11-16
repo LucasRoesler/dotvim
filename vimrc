@@ -1,16 +1,7 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                           __     _____ __  __                              "
-"                           \ \   / /_ _|  \/  |                             "
-"                            \ \ / / | || |\/| |                             "
-"                             \ V /  | || |  | |                             "
-"                              \_/  |___|_|  |_|                             "
-"                                                                            "
-"                 Adam Olsen's (aka synic) vim configuration.                "
-"                                                                            "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " skip init for vim-tiny or vim-small
 if 0 | endif
+set encoding=utf-8
 
 " load plugins
 source ~/.vim/plugins.vim
@@ -36,8 +27,8 @@ set wildmenu
 set wildmode=longest:full,full
 set hlsearch            " keep search results highlighted
 
-" display bufnr:filetype (dos,unix,mac) in status line
-set statusline=%<%n:%f%h%m%r%=\ %{&ff}\ %l,%c%V\ %P
+" clipboard sharing on mac
+set clipboard=unnamed
 
 " turn on mouse support
 set mousehide
@@ -90,6 +81,13 @@ try
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme ron
 endtry
+
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+
+command! ProjectFiles execute 'Files' s:find_git_root()
+command! GoTestAll execute 'GoTest' s:find_git_root()
 
 " automatically reload vimrc and gvimrc on save
 autocmd! bufwritepost vimrc source %

@@ -5,6 +5,10 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC | Startify | Ql
 endif
 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 " golden ratio
 let g:golden_ratio_enabled = 0
 let g:golden_ratio_autocommand = 0
@@ -35,23 +39,13 @@ let g:jedi#smart_auto_mappings = 0
 let g:jedi#goto_definitions_command = 'gd'
 let g:jedi#completions_command = '<C-n>'
 
-" ultisnips settings
-let g:UltiSnipsSnippetDirectories = [
-    \ $HOME.'/.vim/bundle/vim-snippets/UltiSnips',
-    \ 'ultisnippets'
-    \ ]
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-
 " listtoggle
 let g:lt_location_list_toggle_map = '<space>el'
 
 " ale
 let g:ale_sign_column_always = 1
-
-" rope
-let g:ropevim_guess_project = 1
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
 
 " git
 let g:gist_detect_filetype = 1
@@ -59,45 +53,18 @@ let g:gist_open_browser_after_post = 0
 let g:gist_clip_command = 'pbcopy' " for os X
 let g:gist_post_private = 1
 
-let g:gitgutter_sign_column_always = 1
-
-let g:magit_show_help = 0
+" Markdown
+let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_github=1
 
 " easy motion
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_smartsign_us = 1
 let g:EasyMotion_startofline = 1 " don't keep cursor column when JK motion
 
-" CtrlP
-let ctrlp_dir_ignore =
-    \ '(\.svn|\.git|\.hg|node_modules|globalstatic|dumps|sql|build|dist|docs)$'
-let g:ctrlp_custom_ignore = {
-        \ 'dir': ctrlp_dir_ignore,
-    \ }
-let g:ctrlp_map = '<space>ph'
-let g:ctrlp_buffer_func = {'enter': 'CtrlPMappings'}
-let g:ctrlp_command = 'CtrlPMixed'
-let g:ctrlp_max_files = 80000
-let g:ctrlp_match_window = 'bottom,order:ttb,min:10,max:10,results:10'
-let ctrlp_git_ls_command =
-    \ 'cd %s && git ls-files . --cached --exclude-standard'
-let ctrlp_hg_ls_command = 'hg --cwd %s locate -I .'
-
-if executable('ag')
-    let g:ctrlp_working_path_mode = 'ra'
-    let g:ctrlp_use_caching = 0
-
-    let g:ctrlp_grep_ignore = '\(\.rst\|\.jpg\|\.png\|node_modules\)$'
-    let g:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
-
-    let g:ctrlp_user_command = {
-            \ 'types': {
-                \ 1: ['.git', ctrlp_git_ls_command],
-                \ 2: ['.hg', ctrlp_hg_ls_command],
-            \ },
-            \ 'fallback': g:ctrlp_fallback
-        \ }
-endif
+" FZF (replaces Ctrl-P, FuzzyFinder and Command-T)
+set rtp+=/usr/local/opt/fzf
+set rtp+=~/.fzf
 
 " startify
 let g:startify_custom_header = [
@@ -111,8 +78,8 @@ if filereadable(expand('~/.cache/startify_bookmarks.vim'))
     source ~/.cache/startify_bookmarks.vim
 else
     let g:startify_bookmarks = [
-        \ {'eventboard.io': '/Users/synic/Projects/eventboard.io'},
-        \ {'skedup': '/Users/synic/Projects/skedup'},
+        \ {'labs': '$HOME/Code/go/src/github.com/contiamo/labs'},
+        \ {'blog': '$HOME/Code/website'},
         \ ]
 endif
 
@@ -122,32 +89,10 @@ let g:startify_fortune_use_unicode = 0
 let g:startify_enable_special = 0
 
 " file management
-let g:netrw_liststyle = 1
-let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_banner = 1
 let g:netrw_list_hide =
     \ '\(^\|\s\s\)\zs\.\S\+,\(^\|\s\s\)ntuser\.\S\+,__pycache__,\.pyc'
-
-" nerdtree
-let NERDTreeIgnore = [
-    \ '__pycache__', '\.pyc$', '\.pyo$', '\.db$',
-    \ '\.o$', '\.d$', '\.elf$', '\.map$']
-let NERDTreeShowBookmarks = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeWinSize = 25
-let NERDTreeChDirMode = 2
-let NERDTreeHijackNetrw = 0
-
-" ctrlsf
-let g:better_whitespace_filetypes_blacklist = ['ctrlsf']
-
-" airline/powerline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#tab_min_count = 2
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#show_tab_type = 0
 
 " virtualenv
 let g:virtualenv_auto_activate = 1
@@ -160,3 +105,79 @@ let g:pymode_folding = 0
 let g:pymode_lint = 0
 let g:pymode_rope = 0
 
+
+" Lightline
+let g:lightline = {
+\ 'colorscheme': 'wombat',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'],['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error'
+\ },
+\ }
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+autocmd User ALELint call s:MaybeUpdateLightline()
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
+" markdown.vim
+let g:vim_markdown_frontmatter = 1
+
+" vim-go
+let g:go_fmt_command = "goimport"
+let g:go_addtags_transform = "camelcase"
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+
+let g:go_fmt_options = {
+    \ 'gofmt': '-s',
+    \ 'goimports': '-local contiamo.com',
+\ }
+
+let g:go_list_height = 0
+let g:go_list_autoclose = 1
+let g:go_statusline_duration = 6000
+
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_autosave = 1
+autocmd FileType go nmap <Leader>i <Plug>(go-info)

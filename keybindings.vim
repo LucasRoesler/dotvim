@@ -10,6 +10,16 @@ map vig ggVG
 map /  <plug>(incsearch-forward)
 map ?  <plug>(incsearch-backward)
 map g/ <plug>(incsearch-stay)
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>r :Tags<CR>
+nmap <Leader>t :ProjectFiles<CR>
+nmap <Leader>a :Ag<CR>
+
+nmap <C-k>    :Ack! <cword><CR>
+
+" nmap <Esc>k   :Ack! "\b<cword>\b" <CR>
+nmap <C-S-k>  :Ggrep! "\b<cword>\b"<CR>
+" nmap <Esc>K   :Ggrep! "\b<cword>\b" <CR>
 
 map n  <plug>(incsearch-nohl-n)
 map N  <plug>(incsearch-nohl-N)
@@ -35,8 +45,8 @@ nnoremap <silent> <space>en :lnext<cr>
 nnoremap <silent> <space>ep :lprev<cr>
 
 " commenting
-nmap <space>cl :call ToggleComment()<cr>
-vmap <space>cl :call ToggleComment()<cr>
+nmap <space>/ :call ToggleComment()<cr>
+vmap <space>/ :call ToggleComment()<cr>
 
 " easy window switching
 nmap <silent> <space>wk :wincmd k<cr>
@@ -66,9 +76,6 @@ nmap <silent> <space>w7 :execute ':7wincmd w'<cr>
 nmap <silent> <space>w8 :execute ':8wincmd w'<cr>
 nmap <silent> <space>w9 :execute ':9wincmd w'<cr>
 
-" buffers
-nnoremap <silent> <space>bb :CtrlPBuffer<cr>
-
 " tabs
 nnoremap <silent> <space>ll :$tabnew<cr>:Startify<cr>
 nnoremap <silent> <space>ln :tabnext<cr>
@@ -84,24 +91,12 @@ nnoremap <silent> <space>l7 7gt
 nnoremap <silent> <space>l8 8gt
 nnoremap <silent> <space>l9 9gt
 
-" git
-map <space>gr :Gist --private<cr>
-map <space>gR :Gist --public<cr>
-map <space>gs :call magit#show_magit('h')<cr>
-
-" easymotion
-map <space><space> <plug>(easymotion-bd-f)
-nmap <space><space> <plug>(easymotion-overwin-f)
-
 " startify
 nmap <space>bh :Startify<cr>
 
 " file management
-map - :call NetRWCurrentFile()<cr>
-map _ :call NetRWCurrentProject()<cr>
-
-" golden ratio
-map <space>tg :call ToggleGoldenRatio()<cr>
+map <space>- :call NetRWCurrentFile()<cr>
+map <space>_ :call NetRWCurrentProject()<cr>
 
 " sessions
 map <space>ls :call SessionSavePrompt()<cr>
@@ -121,6 +116,9 @@ nmap <silent> <space>sp :call SearchInProjectRoot()<cr>
 
 " gundo
 nmap <silent> <space>ag :GundoToggle<cr>
+
+" tagbar list
+nmap <silent> <space>tt :TagbarToggle<CR>
 
 " toggles
 nmap <silent> <space>th :set nohlsearch!<cr>
