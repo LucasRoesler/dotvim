@@ -47,12 +47,6 @@ let g:ale_sign_column_always = 1
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
 
-" git
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 0
-let g:gist_clip_command = 'pbcopy' " for os X
-let g:gist_post_private = 1
-
 " Markdown
 let vim_markdown_preview_browser='Google Chrome'
 let vim_markdown_preview_github=1
@@ -80,6 +74,8 @@ else
     let g:startify_bookmarks = [
         \ {'labs': '$HOME/Code/go/src/github.com/contiamo/labs'},
         \ {'blog': '$HOME/Code/website'},
+        \ {'vim': '$HOME/Code/dotvim'},
+        \ {'dotfiles': '$HOME/Code/dotfiles'},
         \ ]
 endif
 

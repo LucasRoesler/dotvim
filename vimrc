@@ -27,6 +27,8 @@ set wildmenu
 set wildmode=longest:full,full
 set hlsearch            " keep search results highlighted
 
+set omnifunc=syntaxcomplete#Complete
+
 " clipboard sharing on mac
 set clipboard=unnamed
 

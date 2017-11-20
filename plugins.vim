@@ -41,6 +41,8 @@ Plug 'godlygeek/tabular'               " align text, even tables
 Plug 'fatih/vim-go'
 Plug 'majutsushi/tagbar'
 Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'jiangmiao/auto-pairs'             " auto crud bracket pairs
+Plug 'ajh17/VimCompleteMe'
 
 " search
 Plug 'haya14busa/incsearch.vim'
