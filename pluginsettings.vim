@@ -155,8 +155,12 @@ endfunction
 let g:vim_markdown_frontmatter = 1
 
 " vim-go
-let g:go_fmt_command = "goimport"
+let g:go_fmt_command = "gofmt"
+let g:go_fmt_autosave = 1
+
+" Sets the `transform` option for `gomodifytags` 
 let g:go_addtags_transform = "camelcase"
+
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -166,14 +170,21 @@ let g:go_highlight_extra_types = 1
 
 let g:go_fmt_options = {
     \ 'gofmt': '-s',
-    \ 'goimports': '-local contiamo.com',
+    \ 'goimports': '-local github.com/contiamo',
 \ }
+
+"show the type info (|:GoInfo|) for the word under the cursor automatically.
+let g:go_auto_type_info = 0
+let g:go_updatetime = 800
+
+" `gocode` should include suggestions from unimported packages
+let g:go_gocode_unimported_packages = 1
 
 let g:go_list_height = 0
 let g:go_list_autoclose = 1
 let g:go_statusline_duration = 6000
 
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_metalinter_autosave = 1
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck', 'interfacer']
+let g:go_metalinter_autosave_enabled = ['vet', 'golint' ]
+let g:go_metalinter_autosave = 0
 autocmd FileType go nmap <Leader>i <Plug>(go-info)

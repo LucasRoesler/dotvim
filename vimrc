@@ -78,18 +78,14 @@ endif
 
 " try to enable jellybeans theme, but if that fails, choose `ron`
 try
-    colorscheme gruvbox
+    set termguicolors
+    colorscheme monokai
     set background=dark
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme ron
 endtry
 
-function! s:find_git_root()
-  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
-endfunction
-
-command! ProjectFiles execute 'Files' s:find_git_root()
-command! GoTestAll execute 'GoTest' s:find_git_root()
+autocmd FileType c,cpp,java,php,ruby,python,go autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " automatically reload vimrc and gvimrc on save
 autocmd! bufwritepost vimrc source %

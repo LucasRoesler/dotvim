@@ -98,17 +98,8 @@ nmap <space>bh :Startify<cr>
 map <space>- :call NetRWCurrentFile()<cr>
 map <space>_ :call NetRWCurrentProject()<cr>
 
-" sessions
-map <space>ls :call SessionSavePrompt()<cr>
-map <space>ld :call SessionDeletePrompt()<cr>
-
 " toggle relative line numbering
 nmap <silent> <space>tr :call NumberToggle()<cr>
-
-" toggle nerdtree
-nmap <silent> <space>pn :call NERDTreeCurrentProject()<cr>
-nmap <silent> <space>pc :call NERDTreeCurrentFile()<cr>
-nmap <silent> <space>pd :NERDTreeClose<cr>
 
 " project searching
 nmap <silent> <space>* :CtrlSF<cr>

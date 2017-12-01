@@ -1,3 +1,10 @@
+function! s:find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+
+command! ProjectFiles execute 'Files' s:find_git_root()
+command! GoTestAll execute 'GoTest' s:find_git_root()
+
 " yank entire buffer into clipboard
 function! CopyBuffer()
     let cursor_pos = getpos('.')
@@ -87,19 +94,6 @@ function! WindowCommand(cmd)
     endif
 endfunction
 
-" toggle golden ratio functionality
-function! ToggleGoldenRatio()
-    execute ':GoldenRatioToggle'
-    if g:golden_ratio_enabled == 0
-        let g:golden_ratio_enabled = 1
-        echo 'Enabled golden ratio'
-    else
-        let g:golden_ratio_enabled = 0
-        echo 'Disabled golden ratio'
-        wincmd =
-    endif
-endfunction
-
 " diffing files
 command! DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
     \ | wincmd p | diffthis
@@ -137,6 +131,12 @@ function! s:ZoomToggle() abort
     endif
 endfunction
 command! ZoomToggle call s:ZoomToggle()
+
+function! s:InsertTimeStamp()
+  let tstamp = strftime('%FT%T%z')
+
+endfunction
+command! InsertTimeStamp call s:InsertTimeStamp()
 
 " auto-reload this file when saving
 autocmd! bufwritepost functions.vim source %
