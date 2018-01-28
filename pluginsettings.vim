@@ -9,15 +9,8 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-" golden ratio
-let g:golden_ratio_enabled = 0
-let g:golden_ratio_autocommand = 0
-
 " incsearch
 let g:incsearch#auto_nohlsearch = 1
-
-" setup custom tab lines with numbers and the close button
-" set tabline=%!TabLine()
 
 " gundo settings
 let g:gundo_width = 35
@@ -73,6 +66,7 @@ if filereadable(expand('~/.cache/startify_bookmarks.vim'))
 else
     let g:startify_bookmarks = [
         \ {'labs': '$HOME/Code/go/src/github.com/contiamo/labs'},
+        \ {'gosrc': '$HOME/Code/go/src'},
         \ {'blog': '$HOME/Code/website'},
         \ {'vim': '$HOME/Code/dotvim'},
         \ {'dotfiles': '$HOME/Code/dotfiles'},
@@ -89,9 +83,6 @@ let g:netrw_liststyle = 3
 let g:netrw_banner = 1
 let g:netrw_list_hide =
     \ '\(^\|\s\s\)\zs\.\S\+,\(^\|\s\s\)ntuser\.\S\+,__pycache__,\.pyc'
-
-" virtualenv
-let g:virtualenv_auto_activate = 1
 
 " auto-reload this file when saving
 autocmd! bufwritepost pluginsettings.vim source %
@@ -158,7 +149,7 @@ let g:vim_markdown_frontmatter = 1
 let g:go_fmt_command = "gofmt"
 let g:go_fmt_autosave = 1
 
-" Sets the `transform` option for `gomodifytags` 
+" Sets the `transform` option for `gomodifytags`
 let g:go_addtags_transform = "camelcase"
 
 let g:go_highlight_types = 1

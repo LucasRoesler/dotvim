@@ -8,6 +8,8 @@ endif
 " plugin list
 call plug#begin('~/.vim/plugins')
 
+Plug 'mtth/scratch.vim'                " scratch workspace buffer using :Scratch
+
 Plug 'tpope/vim-repeat'                " enable repeating supported plugin maps
 Plug 'tpope/vim-unimpaired'
 
@@ -20,30 +22,24 @@ Plug 'python-mode/python-mode'
 Plug 'mhinz/vim-startify'              " pretty start page
 
 " project management
-" Plug 'ctrlpvim/ctrlp.vim'              " project file fuzzy-matcher
+" Plug 'ctrlpvim/ctrlp.vim'            " project file fuzzy-matcher
 Plug 'dbakker/vim-projectroot'         " locate project
-
-" window management
-Plug 'vim-scripts/tinykeymap'
 
 " coding/editing
 Plug 'sheerun/vim-polyglot'            " on demand* language pags
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-surround'              " add, change, delete surround text
+
 Plug 'JamshedVesuna/vim-markdown-preview'
 
 Plug 'w0rp/ale'
 Plug 'szw/vim-tags'
-Plug 'majutsushi/tagbar'
 Plug 'ajh17/VimCompletesMe'
 
-Plug 'vim-scripts/Align'
 Plug 'godlygeek/tabular'               " align text, even tables
-Plug 'jiangmiao/auto-pairs'             " auto crud bracket pairs
+Plug 'jiangmiao/auto-pairs'            " auto crud bracket pairs
 Plug 'ntpeters/vim-better-whitespace'  " removes spurious whitespace
 Plug 'tpope/vim-commentary'            " quickly toggle comments
-Plug 'michaeljsmith/vim-indent-object' " for selecting indent objects
-
 
 " search
 Plug 'mileszs/ack.vim'
@@ -53,20 +49,20 @@ Plug 'junegunn/fzf.vim'
 " undo
 Plug 'sjl/gundo.vim'                   " undo tree
 
-" git
-Plug 'tpope/vim-fugitive'              " git utils
-Plug 'airblade/vim-gitgutter'
-
+" git utils
+Plug 'tpope/vim-fugitive'
+" Plug 'airblade/vim-gitgutter'
 
 " colorschemes
 Plug 'crusoexia/vim-monokai'
 
 " interface
- Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'Valloric/ListToggle'
 
 " misc
 " Plug 'vim-scripts/openssl.vim'
-Plug 'Valloric/ListToggle'
+
 
 call plug#end()
 
