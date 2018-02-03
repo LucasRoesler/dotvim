@@ -1,3 +1,6 @@
+"In case /tmp get's clean out, make a new tmp directory for vim:
+:command! Mktmpdir call mkdir(fnamemodify(tempname(),":p:h"),"",0700)
+
 function! s:find_git_root()
   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
 endfunction

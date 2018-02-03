@@ -26,6 +26,7 @@ set incsearch           " use incremental search
 set wildmenu
 set wildmode=longest:full,full
 set hlsearch            " keep search results highlighted
+set autowrite
 
 set omnifunc=syntaxcomplete#Complete
 
@@ -68,7 +69,7 @@ set secure
 set completeopt-=preview
 
 " switch syntax highlighting on
-syntax enable
+syntax on
 
 if has('vim_starting')
     if &compatible

@@ -1,0 +1,36 @@
+" vim: filetype=help foldmethod=marker foldmarker=<<<,>>> modifiable noreadonly
+==============================================================================
+CONTENTS                                                      *lucas-contents*
+
+1. Intro........................................|lucas-intro|
+2. Keybindings..................................|lucas-keybindings|
+3. References...................................lucas-references
+
+==============================================================================
+2. KEYBINDINGS                                             *lucas-keybindings*
+
+2.1 SEARCH                                          *lucas-search-keybindings*
+
+Buffers       <Leader>b
+Tags          <Leader>r
+Project Files <Leader>t
+Ag            <Leader>a
+
+2.2 WINDOWS
+
+Move          <space>w(hjkl)
+Close Bufffer :bd
+
+2.3 Code
+
+Go to def     :GoDef
+Go add tags   :GoAddTags
+
+
+==============================================================================
+3. References
+
+- fzf search https://github.com/junegunn/fzf.vim
+- Golang https://github.com/fatih/vim-go/blob/master/doc/vim-go.txt
+
+
