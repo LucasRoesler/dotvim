@@ -28,6 +28,8 @@ set wildmode=longest:full,full
 set hlsearch            " keep search results highlighted
 set autowrite
 
+set nofoldenable        " turn off folding"
+
 set omnifunc=syntaxcomplete#Complete
 
 " clipboard sharing on mac

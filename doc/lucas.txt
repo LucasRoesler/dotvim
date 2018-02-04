@@ -26,6 +26,10 @@ Close Bufffer :bd
 Go to def     :GoDef
 Go add tags   :GoAddTags
 
+2.4 Text Formatting
+
+Table Format  :TableFormat
+MD view TOC   :Toc
 
 ==============================================================================
 3. References

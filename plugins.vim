@@ -30,8 +30,6 @@ Plug 'sheerun/vim-polyglot'            " on demand* language pags
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-surround'              " add, change, delete surround text
 
-Plug 'JamshedVesuna/vim-markdown-preview'
-
 Plug 'w0rp/ale'
 Plug 'szw/vim-tags'
 Plug 'ajh17/VimCompletesMe'
@@ -40,6 +38,9 @@ Plug 'godlygeek/tabular'               " align text, even tables
 Plug 'jiangmiao/auto-pairs'            " auto crud bracket pairs
 Plug 'ntpeters/vim-better-whitespace'  " removes spurious whitespace
 Plug 'tpope/vim-commentary'            " quickly toggle comments
+
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'plasticboy/vim-markdown'
 
 " search
 Plug 'mileszs/ack.vim'
